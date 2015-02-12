@@ -15,7 +15,7 @@
                 <action android:name="android.intent.action.PICK"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
                 <data
-                    android:path="contacts"
+                    android:path="picker/contacts"
                     android:scheme="content"></data>
             </intent-filter>
         </activity>
