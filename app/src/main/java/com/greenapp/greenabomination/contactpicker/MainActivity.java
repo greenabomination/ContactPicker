@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
                 setResult(Activity.RESULT_OK, outData);
                 finish();
             }
-        })
+        });
     }
 
 
