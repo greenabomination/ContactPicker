@@ -27,31 +27,31 @@ public class ContactPickerTester extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts/"));
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 startActivityForResult(intent, PICK_CONTACT);
             }
         });
 
     }
+
     @Override
-    public void onActivityResult(int reqCode, int resCode, Intent data)
-    {
-        super.onActivityResult(reqCode,resCode,data);
-        switch(reqCode){
+    public void onActivityResult(int reqCode, int resCode, Intent data) {
+        super.onActivityResult(reqCode, resCode, data);
+        switch (reqCode) {
             case (PICK_CONTACT): {
-                if (resCode==Activity.RESULT_OK)
-                {
+                if (resCode == Activity.RESULT_OK) {
                     Uri contactData = data.getData();
-                    Cursor c = getContentResolver().query(contactData,null,null,null,null);
+                    Cursor c = getContentResolver().query(contactData, null, null, null, null);
                     c.moveToFirst();
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
                     c.close();
-                    TextView tv = (TextView)findViewById(R.id.selected_contact_textview);
+                    TextView tv = (TextView) findViewById(R.id.selected_contact_textview);
                     tv.setText(name);
                 }
                 break;
             }
-            default:break;
+            default:
+                break;
         }
     }
 
